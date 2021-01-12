@@ -28,17 +28,18 @@ If a redmine plugin includes tests (unit, functional or integration tests) and t
 - [redmine_saml](https://github.com/AlphaNodes/redmine_saml)
 - [redmine_theme_changer](https://github.com/haru/redmine_theme_changer)
 - [redmine-view-customize](https://github.com/onozaty/redmine-view-customize)
-- [redmine_xls_export](https://github.com/two-pack/redmine_xls_export)
 
 ## Redmine plugins without tests
 
 All plugins should have tests. Some don't - sadly. If it is manually comfirmed, that this plugins are working with all plugins listed here, it is listed in this list.
 
 - [sidebar_hide](https://gitlab.com/bdemirkir/sidebar_hide)
+- [redmine_drawio](https://github.com/mikitex70/redmine_drawio)
 - [redmine_lightbox2](https://github.com/paginagmbh/redmine_lightbox2)
 - [redmine_issue_open_date](https://github.com/southbridgeio/redmine_issue_open_date)
 - [redmine_issue_view_columns](https://github.com/kenan3008/redmine_issue_view_columns)
 - [redmine_wysiwyg_editor](https://github.com/taqueci/redmine_wysiwyg_editor)
+
 
 ## Rules
 

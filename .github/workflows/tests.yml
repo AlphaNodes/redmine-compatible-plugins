@@ -154,6 +154,12 @@ jobs:
           repository: taqueci/redmine_wysiwyg_editor
           path: redmine/plugins/redmine_wysiwyg_editor
 
+      - name: Checkout redmine_drawio
+        uses: actions/checkout@v2
+        with:
+          repository: mikitex70/redmine_drawio
+          path: redmine/plugins/redmine_drawio
+
       - name: Checkout redmine_dmsf
         uses: actions/checkout@v2
         with:
