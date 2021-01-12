@@ -1,4 +1,4 @@
-name: Test
+name: Tests
 on:
   push:
   pull_request:
@@ -125,6 +125,36 @@ jobs:
           repository: haru/redmine_theme_changer
           path: redmine/plugins/redmine_theme_changer
 
+      - name: Checkout sidebar_hide
+        uses: actions/checkout@v2
+        with:
+          repository: https://gitlab.com/bdemirkir/sidebar_hide.git
+          path: redmine/plugins/sidebar_hide
+
+      - name: Checkout redmine_lightbox2
+        uses: actions/checkout@v2
+        with:
+          repository: paginagmbh/redmine_lightbox2
+          path: redmine/plugins/redmine_lightbox2
+
+      - name: Checkout redmine_issue_open_date
+        uses: actions/checkout@v2
+        with:
+          repository: southbridgeio/redmine_issue_open_date
+          path: redmine/plugins/redmine_issue_open_date
+
+      - name: Checkout redmine_issue_view_columns
+        uses: actions/checkout@v2
+        with:
+          repository: kenan3008/redmine_issue_view_columns
+          path: redmine/plugins/redmine_issue_view_columns
+
+      - name: Checkout redmine_wysiwyg_editor
+        uses: actions/checkout@v2
+        with:
+          repository: taqueci/redmine_wysiwyg_editor
+          path: redmine/plugins/redmine_wysiwyg_editor
+
       - name: Checkout redmine_sidekiq
         uses: actions/checkout@v2
         with:
@@ -219,6 +249,7 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=additionals RUBYOPT="-W0"
+        if: always()
 
       - name: Run test for additional_tags
         env:
@@ -226,6 +257,7 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=additional_tags RUBYOPT="-W0"
+        if: always()
 
       - name: Run test for redmine_code_review
         env:
@@ -233,6 +265,7 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=redmine_code_review RUBYOPT="-W0"
+        if: always()
 
       - name: Run test for redmine_git_hosting
         env:
@@ -240,6 +273,7 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine_git_hosting:ci:all
+        if: always()
 
       - name: Run test for redmine_issue_evm
         env:
@@ -247,6 +281,7 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=redmine_issue_evm RUBYOPT="-W0"
+        if: always()
 
       - name: Run test for redmine_ref_issues
         env:
@@ -254,6 +289,7 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=redmine_ref_issues RUBYOPT="-W0"
+        if: always()
 
       - name: Run test for redmine_messenger
         env:
@@ -261,6 +297,7 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=redmine_messenger RUBYOPT="-W0"
+        if: always()
 
       - name: Run test for redmine_privacy_terms
         env:
@@ -268,6 +305,7 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=redmine_privacy_terms RUBYOPT="-W0"
+        if: always()
 
       - name: Run test for redmine_redmine_saml
         env:
@@ -275,6 +313,7 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=redmine_saml RUBYOPT="-W0"
+        if: always()
 
       - name: Run test for redmine_theme_changer
         env:
@@ -282,6 +321,7 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=rredmine_theme_changer RUBYOPT="-W0"
+        if: always()
 
       - name: Run test for view_customize
         env:
@@ -289,3 +329,4 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=view_customize RUBYOPT="-W0"
+        if: always()
