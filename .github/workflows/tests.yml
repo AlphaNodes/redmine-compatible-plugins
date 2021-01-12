@@ -160,12 +160,6 @@ jobs:
           repository: danmunn/redmine_dmsf
           path: redmine/plugins/redmine_dmsf
 
-      - name: Checkout redmine_xls_export
-        uses: actions/checkout@v2
-        with:
-          repository: two-pack/redmine_xls_export
-          path: redmine/plugins/redmine_xls_export
-
       - name: Checkout redmine_sidekiq
         uses: actions/checkout@v2
         with:
@@ -290,6 +284,14 @@ jobs:
         run: bundle exec rake redmine:plugins:test NAME=redmine_code_review RUBYOPT="-W0"
         if: always()
 
+      - name: Run test for redmine_dmsf
+        env:
+          RAILS_ENV: test
+          REDMINE_VERSION: ${{ matrix.redmine }}
+        working-directory: redmine
+        run: bundle exec rake redmine:plugins:test NAME=redmine_dmsf RUBYOPT="-W0"
+        if: always()
+
       - name: Run test for redmine_git_hosting
         env:
           RAILS_ENV: test
@@ -298,7 +300,7 @@ jobs:
         run: bundle exec rake redmine_git_hosting:ci:all
         if: always()
 
-      - name: Fix tests for redmine_issue_evm
+      - name: Prepare tests for redmine_issue_evm
         working-directory: redmine
         run: |
           sed -i 's/\.\.\/test_helper/\/test_helper/g' plugins/redmine_issue_evm/test/functional/evmbaselines_controller_test.rb
@@ -306,6 +308,7 @@ jobs:
           sed -i 's/\.\.\/test_helper/\/test_helper/g' plugins/redmine_issue_evm/test/unit/evmbaseline_issue_test.rb
           sed -i 's/\.\.\/test_helper/\/test_helper/g' plugins/redmine_issue_evm/test/unit/evmbaseline_test.rb
           sed -i '/\.\.\/test/\/test/d' plugins/redmine_issue_evm/test/test_helper.rb
+        if: always()
 
       - name: Run test for redmine_issue_evm
         env:
@@ -347,6 +350,12 @@ jobs:
         run: bundle exec rake redmine:plugins:test NAME=redmine_saml RUBYOPT="-W0"
         if: always()
 
+      - name: Prepare tests for redmine_theme_changer
+        working-directory: redmine
+        run: |
+          cp plugin/redmine_theme_changer/test/fixtures/theme_changer_user_settings.yml test/fixtures/
+        if: always()
+
       - name: Run test for redmine_theme_changer
         env:
           RAILS_ENV: test
@@ -361,20 +370,4 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=view_customize RUBYOPT="-W0"
-        if: always()
-
-      - name: Run test for redmine_dmsf
-        env:
-          RAILS_ENV: test
-          REDMINE_VERSION: ${{ matrix.redmine }}
-        working-directory: redmine
-        run: bundle exec rake redmine:plugins:test NAME=redmine_dmsf RUBYOPT="-W0"
-        if: always()
-
-      - name: Run test for redmine_xls_export
-        env:
-          RAILS_ENV: test
-          REDMINE_VERSION: ${{ matrix.redmine }}
-        working-directory: redmine
-        run: bundle exec rake redmine:plugins:test NAME=redmine_xls_export RUBYOPT="-W0"
         if: always()
