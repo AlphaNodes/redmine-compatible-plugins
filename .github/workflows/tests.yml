@@ -154,6 +154,18 @@ jobs:
           repository: taqueci/redmine_wysiwyg_editor
           path: redmine/plugins/redmine_wysiwyg_editor
 
+      - name: Checkout redmine_dmsf
+        uses: actions/checkout@v2
+        with:
+          repository: danmunn/redmine_dmsf
+          path: redmine/plugins/redmine_dmsf
+
+      - name: Checkout redmine_xls_export
+        uses: actions/checkout@v2
+        with:
+          repository: two-pack/redmine_xls_export
+          path: redmine/plugins/redmine_xls_export
+
       - name: Checkout redmine_sidekiq
         uses: actions/checkout@v2
         with:
@@ -286,6 +298,15 @@ jobs:
         run: bundle exec rake redmine_git_hosting:ci:all
         if: always()
 
+      - name: Fix tests for redmine_issue_evm
+        working-directory: redmine
+        run: |
+          sed -i 's/\.\.\/test_helper/\/test_helper/g' plugins/redmine_issue_evm/test/functional/evmbaselines_controller_test.rb
+          sed -i 's/\.\.\/test_helper/\/test_helper/g' plugins/redmine_issue_evm/test/functional/evms_controller_test.rb
+          sed -i 's/\.\.\/test_helper/\/test_helper/g' plugins/redmine_issue_evm/test/unit/evmbaseline_issue_test.rb
+          sed -i 's/\.\.\/test_helper/\/test_helper/g' plugins/redmine_issue_evm/test/unit/evmbaseline_test.rb
+          sed -i '/\.\.\/test/\/test/d' plugins/redmine_issue_evm/test/test_helper.rb
+
       - name: Run test for redmine_issue_evm
         env:
           RAILS_ENV: test
@@ -331,7 +352,7 @@ jobs:
           RAILS_ENV: test
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
-        run: bundle exec rake redmine:plugins:test NAME=rredmine_theme_changer RUBYOPT="-W0"
+        run: bundle exec rake redmine:plugins:test NAME=redmine_theme_changer RUBYOPT="-W0"
         if: always()
 
       - name: Run test for view_customize
@@ -340,4 +361,20 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=view_customize RUBYOPT="-W0"
+        if: always()
+
+      - name: Run test for redmine_dmsf
+        env:
+          RAILS_ENV: test
+          REDMINE_VERSION: ${{ matrix.redmine }}
+        working-directory: redmine
+        run: bundle exec rake redmine:plugins:test NAME=redmine_dmsf RUBYOPT="-W0"
+        if: always()
+
+      - name: Run test for redmine_xls_export
+        env:
+          RAILS_ENV: test
+          REDMINE_VERSION: ${{ matrix.redmine }}
+        working-directory: redmine
+        run: bundle exec rake redmine:plugins:test NAME=redmine_xls_export RUBYOPT="-W0"
         if: always()

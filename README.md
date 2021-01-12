@@ -19,6 +19,7 @@ If a redmine plugin includes tests (unit, functional or integration tests) and t
 - [additional_tags](https://github.com/AlphaNodes/additional_tags)
 - [additionals](https://github.com/AlphaNodes/additionals)
 - [redmine_code_review](https://github.com/haru/redmine_code_review)
+- [redmine_dmsf](https://github.com/danmunn/redmine_dmsf)
 - [redmine_git_hosting](https://github.com/jbox-web/redmine_git_hosting)
 - [redmine_issue_evm](https://github.com/momibun926/redmine_issue_evm)
 - [redmine_ref_issues](https://github.com/AlphaNodes/redmine_ref_issues)
@@ -27,6 +28,7 @@ If a redmine plugin includes tests (unit, functional or integration tests) and t
 - [redmine_saml](https://github.com/AlphaNodes/redmine_saml)
 - [redmine_theme_changer](https://github.com/haru/redmine_theme_changer)
 - [redmine-view-customize](https://github.com/onozaty/redmine-view-customize)
+- [redmine_xls_export](https://github.com/two-pack/redmine_xls_export)
 
 ## Redmine plugins without tests
 
