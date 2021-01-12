@@ -160,11 +160,22 @@ jobs:
           repository: mikitex70/redmine_drawio
           path: redmine/plugins/redmine_drawio
 
+      - name: Checkout redmine_local_avatars
+        uses: actions/checkout@v2
+        with:
+          repository: alexandermeindl/redmine_local_avatars
+          path: redmine/plugins/redmine_local_avatars
+
       - name: Checkout redmine_dmsf
         uses: actions/checkout@v2
         with:
           repository: danmunn/redmine_dmsf
           path: redmine/plugins/redmine_dmsf
+
+      - name: Fix redmine_dmsf gems
+        working-directory: redmine
+        run: |
+          sed -i '/rubyzip/d' Gemfile
 
       - name: Checkout redmine_sidekiq
         uses: actions/checkout@v2
@@ -376,4 +387,12 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=view_customize RUBYOPT="-W0"
+        if: always()
+
+      - name: Run test for redmine_local_avatars
+        env:
+          RAILS_ENV: test
+          REDMINE_VERSION: ${{ matrix.redmine }}
+        working-directory: redmine
+        run: bundle exec rake redmine:plugins:test NAME=redmine_local_avatars RUBYOPT="-W0"
         if: always()

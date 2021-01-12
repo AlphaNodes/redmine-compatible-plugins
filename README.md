@@ -22,6 +22,7 @@ If a redmine plugin includes tests (unit, functional or integration tests) and t
 - [redmine_dmsf](https://github.com/danmunn/redmine_dmsf)
 - [redmine_git_hosting](https://github.com/jbox-web/redmine_git_hosting)
 - [redmine_issue_evm](https://github.com/momibun926/redmine_issue_evm)
+- [redmine_local_avatars](https://github.com/alexandermeindl/redmine_local_avatars)
 - [redmine_ref_issues](https://github.com/AlphaNodes/redmine_ref_issues)
 - [redmine_messenger](https://github.com/alphanodes/redmine_messenger)
 - [redmine_privacy_terms](https://github.com/AlphaNodes/redmine_privacy_terms)
