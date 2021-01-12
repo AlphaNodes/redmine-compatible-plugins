@@ -125,11 +125,10 @@ jobs:
           repository: haru/redmine_theme_changer
           path: redmine/plugins/redmine_theme_changer
 
-      - name: Checkout sidebar_hide
-        uses: actions/checkout@v2
-        with:
-          repository: https://gitlab.com/bdemirkir/sidebar_hide.git
-          path: redmine/plugins/sidebar_hide
+      - name: Checkout sidebar_hide from gitlab
+        working-directory: redmine
+        run: |
+          git clone https://gitlab.com/bdemirkir/sidebar_hide.git plugins/sidebar_hide
 
       - name: Checkout redmine_lightbox2
         uses: actions/checkout@v2
