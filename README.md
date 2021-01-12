@@ -25,6 +25,7 @@ If a redmine plugin includes tests (unit, functional or integration tests) and t
 - [redmine_messenger](https://github.com/alphanodes/redmine_messenger)
 - [redmine_privacy_terms](https://github.com/AlphaNodes/redmine_privacy_terms)
 - [redmine_saml](https://github.com/AlphaNodes/redmine_saml)
+- [redmine_theme_changer](https://github.com/haru/redmine_theme_changer)
 - [redmine-view-customize](https://github.com/onozaty/redmine-view-customize)
 
 ## Redmine plugins without tests

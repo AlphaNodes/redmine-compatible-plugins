@@ -62,6 +62,7 @@ jobs:
       - name: Checkout redmine_git_hosting
         uses: actions/checkout@v2
         with:
+          repository: jbox-web/redmine_git_hosting
           path: redmine/plugins/redmine_git_hosting
 
       - name: Checkout additionals
@@ -117,6 +118,12 @@ jobs:
         with:
           repository: onozaty/redmine-view-customize
           path: redmine/plugins/view_customize
+
+      - name: Checkout redmine_theme_changer
+        uses: actions/checkout@v2
+        with:
+          repository: onozaty/haru/redmine_theme_changer
+          path: redmine/plugins/redmine_theme_changer
 
       - name: Checkout redmine_sidekiq
         uses: actions/checkout@v2
@@ -268,6 +275,13 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=redmine_saml RUBYOPT="-W0"
+
+      - name: Run test for redmine_theme_changer
+        env:
+          RAILS_ENV: test
+          REDMINE_VERSION: ${{ matrix.redmine }}
+        working-directory: redmine
+        run: bundle exec rake redmine:plugins:test NAME=rredmine_theme_changer RUBYOPT="-W0"
 
       - name: Run test for view_customize
         env:
