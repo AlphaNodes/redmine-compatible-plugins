@@ -12,7 +12,7 @@ If a redmine plugin includes tests (unit, functional or integration tests) and t
 
 - Redmine: 4.1.x and Master
 - Ruby: 2.4.x and 2.6.x
-- Database: MySQL and PostgreSQL  Ruby `>= 2.4.10`
+- Database: MySQL and PostgreSQL
 
 ### Compatible plugins
 
@@ -26,6 +26,7 @@ If a redmine plugin includes tests (unit, functional or integration tests) and t
 - [redmine_ref_issues](https://github.com/AlphaNodes/redmine_ref_issues)
 - [redmine_messenger](https://github.com/alphanodes/redmine_messenger)
 - [redmine_privacy_terms](https://github.com/AlphaNodes/redmine_privacy_terms)
+- [redmine_recurring_tasks](https://github.com/southbridgeio/redmine_recurring_tasks)
 - [redmine_saml](https://github.com/AlphaNodes/redmine_saml)
 - [redmine_theme_changer](https://github.com/haru/redmine_theme_changer)
 - [redmine-view-customize](https://github.com/onozaty/redmine-view-customize)

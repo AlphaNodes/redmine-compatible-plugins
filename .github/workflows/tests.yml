@@ -143,6 +143,12 @@ jobs:
           repository: paginagmbh/redmine_lightbox2
           path: redmine/plugins/redmine_lightbox2
 
+      - name: Checkout redmine_recurring_tasks
+        uses: actions/checkout@v2
+        with:
+          repository: southbridgeio/redmine_recurring_tasks
+          path: redmine/plugins/redmine_recurring_tasks
+
       - name: Checkout redmine_issue_open_date
         uses: actions/checkout@v2
         with:
@@ -395,4 +401,12 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=redmine_local_avatars RUBYOPT="-W0"
+        if: always()
+
+      - name: Run test for redmine_recurring_tasks
+        env:
+          RAILS_ENV: test
+          REDMINE_VERSION: ${{ matrix.redmine }}
+        working-directory: redmine
+        run: bundle exec rake redmine:plugins:test NAME=redmine_recurring_tasks RUBYOPT="-W0"
         if: always()
