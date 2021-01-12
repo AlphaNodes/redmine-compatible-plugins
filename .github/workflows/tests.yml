@@ -239,17 +239,16 @@ jobs:
         run: |
           echo "source 'https://rubygems.org'" > Gemfile.local
           echo "group :test do" >> Gemfile.local
-          echo "  gem 'simplecov-rcov'" >> Gemfile.local
           echo "  gem 'factory_bot_rails', '< 5.0'" >> Gemfile.local
           echo "  gem 'shoulda'" >> Gemfile.local
           echo "  gem 'rails-controller-testing'" >> Gemfile.local
-          echo "  gem 'coveralls', require: false" >> Gemfile.local
           echo "end">> Gemfile.local
 
       - name: Prepare Redmine source
         working-directory: redmine
         run: |
           sed -i '/rubocop/d' Gemfile
+          sed -i '/simplecov/d' Gemfile
           rm -f .rubocop*
           cp plugins/redmine_git_hosting/contrib/github/database-${{ matrix.db }}.yml config/database.yml
           cp plugins/additionals/test/support/configuration.yml config/configuration.yml
