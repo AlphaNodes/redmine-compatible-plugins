@@ -243,6 +243,7 @@ jobs:
           echo "  gem 'factory_bot_rails', '< 5.0'" >> Gemfile.local
           echo "  gem 'shoulda'" >> Gemfile.local
           echo "  gem 'rails-controller-testing'" >> Gemfile.local
+          echo "  gem 'coveralls', require: false" >> Gemfile.local
           echo "end">> Gemfile.local
 
       - name: Prepare Redmine source
@@ -305,22 +306,6 @@ jobs:
         run: bundle exec rake redmine:plugins:test NAME=additional_tags RUBYOPT="-W0"
         if: always()
 
-      - name: Run test for redmine_code_review
-        env:
-          RAILS_ENV: test
-          REDMINE_VERSION: ${{ matrix.redmine }}
-        working-directory: redmine
-        run: bundle exec rake redmine:plugins:test NAME=redmine_code_review RUBYOPT="-W0"
-        if: always()
-
-      - name: Run test for redmine_dmsf
-        env:
-          RAILS_ENV: test
-          REDMINE_VERSION: ${{ matrix.redmine }}
-        working-directory: redmine
-        run: bundle exec rake redmine:plugins:test NAME=redmine_dmsf RUBYOPT="-W0"
-        if: always()
-
       - name: Run test for redmine_git_hosting
         env:
           RAILS_ENV: test
@@ -379,14 +364,6 @@ jobs:
         run: bundle exec rake redmine:plugins:test NAME=redmine_saml RUBYOPT="-W0"
         if: always()
 
-      - name: Run test for redmine_theme_changer
-        env:
-          RAILS_ENV: test
-          REDMINE_VERSION: ${{ matrix.redmine }}
-        working-directory: redmine
-        run: bundle exec rake redmine:plugins:test NAME=redmine_theme_changer RUBYOPT="-W0"
-        if: always()
-
       - name: Run test for view_customize
         env:
           RAILS_ENV: test
@@ -409,4 +386,28 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=redmine_recurring_tasks RUBYOPT="-W0"
+        if: always()
+
+      - name: Run test for redmine_dmsf
+        env:
+          RAILS_ENV: test
+          REDMINE_VERSION: ${{ matrix.redmine }}
+        working-directory: redmine
+        run: bundle exec rake redmine:plugins:test NAME=redmine_dmsf RUBYOPT="-W0"
+        if: always()
+
+      - name: Run test for redmine_code_review
+        env:
+          RAILS_ENV: test
+          REDMINE_VERSION: ${{ matrix.redmine }}
+        working-directory: redmine
+        run: bundle exec rake redmine:plugins:test NAME=redmine_code_review RUBYOPT="-W0"
+        if: always()
+
+      - name: Run test for redmine_theme_changer
+        env:
+          RAILS_ENV: test
+          REDMINE_VERSION: ${{ matrix.redmine }}
+        working-directory: redmine
+        run: bundle exec rake redmine:plugins:test NAME=redmine_theme_changer RUBYOPT="-W0"
         if: always()
