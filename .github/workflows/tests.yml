@@ -320,11 +320,11 @@ jobs:
       - name: Prepare tests for redmine_issue_evm
         working-directory: redmine
         run: |
-          sed -i 's/\.\.\/test_helper/\/test_helper/g' plugins/redmine_issue_evm/test/functional/evmbaselines_controller_test.rb
-          sed -i 's/\.\.\/test_helper/\/test_helper/g' plugins/redmine_issue_evm/test/functional/evms_controller_test.rb
-          sed -i 's/\.\.\/test_helper/\/test_helper/g' plugins/redmine_issue_evm/test/unit/evmbaseline_issue_test.rb
-          sed -i 's/\.\.\/test_helper/\/test_helper/g' plugins/redmine_issue_evm/test/unit/evmbaseline_test.rb
-          sed -i '/\.\.\/test/\/test/d' plugins/redmine_issue_evm/test/test_helper.rb
+          sed -i 's/\.\.\/test_helper/test_helper/g' plugins/redmine_issue_evm/test/functional/evmbaselines_controller_test.rb
+          sed -i 's/\.\.\/test_helper/test_helper/g' plugins/redmine_issue_evm/test/functional/evms_controller_test.rb
+          sed -i 's/\.\.\/test_helper/test_helper/g' plugins/redmine_issue_evm/test/unit/evmbaseline_issue_test.rb
+          sed -i 's/\.\.\/test_helper/test_helper/g' plugins/redmine_issue_evm/test/unit/evmbaseline_test.rb
+          sed -i 's/\.\.\/test/test/g' plugins/redmine_issue_evm/test/test_helper.rb
         if: always()
 
       - name: Run test for redmine_issue_evm
@@ -370,7 +370,7 @@ jobs:
       - name: Prepare tests for redmine_theme_changer
         working-directory: redmine
         run: |
-          cp plugin/redmine_theme_changer/test/fixtures/theme_changer_user_settings.yml test/fixtures/
+          cp plugins/redmine_theme_changer/test/fixtures/theme_changer_user_settings.yml test/fixtures/
         if: always()
 
       - name: Run test for redmine_theme_changer
