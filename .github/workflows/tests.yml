@@ -198,6 +198,18 @@ jobs:
           gem install bundler -v '~> 1.0'
           bundle config path "$(pwd)/vendor/bundle"
 
+      - name: Set Gemfile.local with gems for testing
+        working-directory: redmine
+        run: |
+          echo "source 'https://rubygems.org'" > Gemfile.local
+          echo "group :test do" >> Gemfile.local
+          echo "  gem 'simplecov-rcov'" >> Gemfile.local
+          echo "  gem 'factory_bot_rails', '< 5.0'" >> Gemfile.local
+          echo "  gem 'shoulda'" >> Gemfile.local
+          echo "  gem 'rails-controller-testing'" >> Gemfile.local
+          echo "  gem 'coveralls', require: false" >> Gemfile.local
+          echo "end">> Gemfile.local
+
       - name: Prepare Redmine source
         working-directory: redmine
         run: |
