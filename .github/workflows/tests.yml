@@ -125,6 +125,13 @@ jobs:
           repository: haru/redmine_theme_changer
           path: redmine/plugins/redmine_theme_changer
 
+      - name: Prepare tests for redmine_theme_changer
+        working-directory: redmine
+        run: |
+          cp plugins/redmine_theme_changer/test/fixtures/theme_changer_user_settings.yml test/fixtures/
+          sed -i '/coveralls/d' plugins/redmine_theme_changer/test/test_helper.rb
+        if: always()
+
       - name: Checkout sidebar_hide from gitlab
         working-directory: redmine
         run: |
@@ -230,7 +237,6 @@ jobs:
           echo "  gem 'factory_bot_rails', '< 5.0'" >> Gemfile.local
           echo "  gem 'shoulda'" >> Gemfile.local
           echo "  gem 'rails-controller-testing'" >> Gemfile.local
-          echo "  gem 'coveralls', require: false" >> Gemfile.local
           echo "end">> Gemfile.local
 
       - name: Prepare Redmine source
@@ -365,12 +371,6 @@ jobs:
           REDMINE_VERSION: ${{ matrix.redmine }}
         working-directory: redmine
         run: bundle exec rake redmine:plugins:test NAME=redmine_saml RUBYOPT="-W0"
-        if: always()
-
-      - name: Prepare tests for redmine_theme_changer
-        working-directory: redmine
-        run: |
-          cp plugins/redmine_theme_changer/test/fixtures/theme_changer_user_settings.yml test/fixtures/
         if: always()
 
       - name: Run test for redmine_theme_changer
