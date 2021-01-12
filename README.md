@@ -1,6 +1,6 @@
 # Redmine List of compatible plugins
 
-[![Run Tests](https://github.com/AlphaNodes/redmine-compatible-plugins/workflows/Tests/badge.svg)](https://github.com/AlphaNodes/redmine-compatible-plugins/actions?query=workflow%3ATests)
+[![Run Tests](../../workflows/Tests/badge.svg)](../../actions?query=workflow%3ATests)
 
 This list should get you the information, which plugins are compatible with each other and works with current Redmine versions.
 

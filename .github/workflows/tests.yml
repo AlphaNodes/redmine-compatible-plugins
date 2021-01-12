@@ -122,7 +122,7 @@ jobs:
       - name: Checkout redmine_theme_changer
         uses: actions/checkout@v2
         with:
-          repository: onozaty/haru/redmine_theme_changer
+          repository: haru/redmine_theme_changer
           path: redmine/plugins/redmine_theme_changer
 
       - name: Checkout redmine_sidekiq
